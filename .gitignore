@@ -1,0 +1,16 @@
+node_modules/
+dist/
+out/
+*.tsbuildinfo
+.vite/
+resources/cfr/*.jar
+resources/arthas/*.jar
+.arthas-studio/
+testapp/build/
+testapp/dist/
+
+# Diagnostic output from ARTHAS_STUDIO_LOG and the verification scripts
+*.log
+probe.txt
+min.txt
+gate.txt

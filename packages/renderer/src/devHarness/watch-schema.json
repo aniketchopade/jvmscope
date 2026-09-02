@@ -1,0 +1,65 @@
+{
+  "name": "watch",
+  "description": "Watch 方法执行观察工具: 观察指定方法的调用情况，包括入参、返回值和抛出异常等信息，支持实时流式输出。对应 Arthas 的 watch 命令。",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "classPattern": {
+        "description": "类名表达式匹配，支持通配符，如demo.MathGame",
+        "type": "string"
+      },
+      "methodPattern": {
+        "description": "方法名表达式匹配，支持通配符，如primeFactors",
+        "type": "string"
+      },
+      "express": {
+        "description": "观察表达式，默认为{params, target, returnObj}，支持OGNL表达式",
+        "type": "string"
+      },
+      "successOnly": {
+        "description": "在方法正常返回后观察(-s)，默认false",
+        "type": "boolean"
+      },
+      "numberOfExecutions": {
+        "description": "执行次数限制，默认值为 1。达到指定次数后自动停止",
+        "type": "integer"
+      },
+      "timeout": {
+        "description": "命令执行超时时间，单位为秒，默认30秒。超时后命令自动退出",
+        "type": "integer"
+      },
+      "expandLevel": {
+        "description": "指定输出结果的属性遍历深度，默认1，最大4",
+        "type": "integer"
+      },
+      "beforeMethod": {
+        "description": "在方法调用之前观察(-b)，默认false",
+        "type": "boolean"
+      },
+      "maxMatchCount": {
+        "description": "指定Class最大匹配数量，默认50",
+        "type": "integer"
+      },
+      "sizeLimit": {
+        "description": "输出结果大小上限(字节)。对应 watch -M/--sizeLimit，默认 10 * 1024 * 1024",
+        "type": "integer"
+      },
+      "condition": {
+        "description": "OGNL条件表达式，满足条件的调用才会被观察，如params[0]<0",
+        "type": "string"
+      },
+      "regex": {
+        "description": "开启正则表达式匹配，默认为通配符匹配，默认false",
+        "type": "boolean"
+      },
+      "exceptionOnly": {
+        "description": "在方法抛出异常后观察(-e)，默认false",
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "classPattern"
+    ],
+    "additionalProperties": false
+  }
+}

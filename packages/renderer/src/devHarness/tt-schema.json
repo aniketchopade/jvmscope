@@ -1,0 +1,57 @@
+{
+  "name": "tt",
+  "description": "TimeTunnel 时空隧道工具: 方法执行数据的时空隧道，记录下指定方法每次调用的入参和返回信息，对应 Arthas 的 tt 命令。支持记录、列表、搜索、查看详情、重放、删除等操作。",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "classPattern": {
+        "description": "类名表达式匹配，支持通配符，如demo.MathGame或*Test。record操作时必需",
+        "type": "string"
+      },
+      "maxMatchCount": {
+        "description": "Class最大匹配数量，防止匹配到的Class数量太多导致JVM挂起，默认50",
+        "type": "integer"
+      },
+      "sizeLimit": {
+        "description": "输出结果大小上限(字节)。对应 tt -M/--sizeLimit，默认 10 * 1024 * 1024",
+        "type": "integer"
+      },
+      "condition": {
+        "description": "OGNL条件表达式，满足条件的调用才会被记录，如params[0]<0或'params.length==1'",
+        "type": "string"
+      },
+      "regex": {
+        "description": "开启正则表达式匹配，默认为通配符匹配，默认false",
+        "type": "boolean"
+      },
+      "searchExpression": {
+        "description": "搜索表达式，用于search操作，支持OGNL表达式如'method.name==\"primeFactors\"'",
+        "type": "string"
+      },
+      "methodPattern": {
+        "description": "方法名表达式匹配，支持通配符，如primeFactors或*method。record操作时必需",
+        "type": "string"
+      },
+      "action": {
+        "description": "操作类型: record/t(记录), list/l(列表), search/s(搜索), info/i(查看详情), replay/p(重放), delete/d(删除), deleteAll/da(删除所有)，默认record",
+        "type": "string"
+      },
+      "index": {
+        "description": "指定索引，用于info/replay/delete等操作",
+        "type": "integer"
+      },
+      "numberOfExecutions": {
+        "description": "记录次数限制，默认值为 1。达到指定次数后自动停止（仅record操作）",
+        "type": "integer"
+      },
+      "timeout": {
+        "description": "命令执行超时时间，单位为秒，默认30秒。超时后命令自动退出（仅record操作）",
+        "type": "integer"
+      }
+    },
+    "required": [
+      "action"
+    ],
+    "additionalProperties": false
+  }
+}

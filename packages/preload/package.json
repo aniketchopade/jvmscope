@@ -1,0 +1,18 @@
+{
+  "name": "@jvmscope/preload",
+  "version": "0.1.0",
+  "comment": "Deliberately NOT \"type\": \"module\" — Electron sandboxed preload scripts must be CommonJS; an ESM preload fails at load with 'Cannot use import statement outside a module' and the bridge never reaches the renderer.",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "@jvmscope/core": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.5",
+    "electron": "^33.2.1",
+    "typescript": "^5.6.3"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "name": "jvmscope",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Live debugging UI for running JVMs: attach to a Java PID (local or in a Kubernetes pod), browse its decompiled source in an embedded VS Code, and drive Arthas watch/trace/time-tunnel from a form-based UI.",
+  "scripts": {
+    "build": "pnpm --filter @jvmscope/core run build && pnpm --filter @jvmscope/preload run build && pnpm --filter @jvmscope/main run build && pnpm --filter @jvmscope/renderer run build",
+    "test": "pnpm --filter @jvmscope/core run test",
+    "typecheck": "pnpm --filter @jvmscope/renderer exec tsc -p tsconfig.json",
+    "start": "pnpm run build && pnpm --filter @jvmscope/main exec electron ./dist/index.js",
+    "dev:renderer": "pnpm --filter @jvmscope/renderer run dev",
+    "dev:main": "pnpm --filter @jvmscope/main run dev",
+    "harness": "pnpm --filter @jvmscope/renderer exec vite --port 5199",
+    "testapp:build": "bash testapp/build.sh",
+    "testapp:run": "java -jar testapp/dist/demo-server.jar 8000",
+    "verify:preload": "pnpm --filter @jvmscope/main exec electron scripts/verify-preload.mjs",
+    "spike:mcp": "pnpm --filter @jvmscope/core exec node scripts/spike-mcp.mjs",
+    "spike:e2e": "pnpm --filter @jvmscope/core exec node scripts/e2e-session.mjs"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.3"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
